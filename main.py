@@ -1,7 +1,7 @@
 import pickle
 
 def main():
-    with open("backupMil.bin", "rb") as file:
+    with open("backup.bin", "rb") as file:
         usuarios = pickle.load(file);
         conexoes = pickle.load(file);
         historico = pickle.load(file);
@@ -53,10 +53,11 @@ def anterior(x,y, usuarios, conexoes_atualizadas):
     if(usuarios[x][1] < usuarios[y][1]): return True
     if(usuarios[x][1] > usuarios[y][1]): return False
 
-    if(len(conexoes_atualizadas[x][1]) > len(conexoes_atualizadas[x][1])): return True
-    if(len(conexoes_atualizadas[x][1]) > len(conexoes_atualizadas[x][1])): return False
+    if((len(conexoes_atualizadas[x][1]) + len(conexoes_atualizadas[x][2])) > (len(conexoes_atualizadas[y][1]) + len(conexoes_atualizadas[y][2]))): return True
+    if((len(conexoes_atualizadas[x][1]) + len(conexoes_atualizadas[x][2])) < (len(conexoes_atualizadas[y][1]) + len(conexoes_atualizadas[y][2]))): return False
 
-    if( x < y): return True 
+    if( x < y): 
+        return True 
 
     return False
 
@@ -101,7 +102,9 @@ def estatisticas(usuarios,  conexoes_atualizadas):
         else: melhorDeCadaCidade.append(listaCidadeUsuario[index])
     
     for i in melhorDeCadaCidade:
-        print(f"{i[0]} {i[1]}")
+        print(i)
+        
+        
  
 
 
